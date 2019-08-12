@@ -20,16 +20,6 @@ class Quote {
     this.citation = citation;
     this.year = year;
   }
-
-  // Creates a new Quote object consisting of a quotation,
-  // source, and tag.
-  constructor(quotation, source, tag) {
-    this.quotation = quotation;
-    this.source = source;
-    this.tag = tag;
-    this.citation = null;
-    this.year = null;
-  }
 }
 
 var quotes = [];
@@ -48,12 +38,16 @@ quotes.push(new Quote('Today\'s gunna be one of those days huh',
 quotes.push(new Quote('It is during our darkest moments that we must'
                       + ' focus to see the light.',
                       'Aristotle',
-                      'Productivity'));
+                      'Productivity',
+                      null,
+                      null));
 
 quotes.push(new Quote('Don\'t judge each day by the harvest you reap'
                       + ' but by the seeds that you plant.',
                       'Robert Louis Stevenson',
-                      'Productivity'));
+                      'Productivity',
+                      null,
+                      null));
 
 quotes.push(new Quote('It\'s too much of a bother to find another quote.',
                       'David Schultz',
