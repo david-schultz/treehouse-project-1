@@ -73,6 +73,8 @@ function getRandomColor() {
 // Changes the background to a random color.
 function printQuote() {
   var q = getRandomQuote();
+  var c = getRandomColor();
+
   var htmlStr = '<p class="quote">' + q.quotation + '</p>' +
                 '<p class="source">' + q.source;
   if(q.citation !== null) {
@@ -87,11 +89,12 @@ function printQuote() {
   htmlStr += '</p>';
   
   document.getElementById('quote-box').innerHTML = htmlStr;
-  var curColor = getRandomColor();
-  document.getElementById('body').style.backgroundColor = curColor;
-  document.getElementById('loadQuote').style.backgroundColor = curColor;
+  document.getElementById('body').style.backgroundColor = c;
+  document.getElementById('loadQuote').style.backgroundColor = c;
   return htmlStr;
 }
 
-
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+// Calls printQuote() every 10 seconds.
+setInterval(printQuote, 10000);
