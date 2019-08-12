@@ -54,7 +54,6 @@ quotes.push(new Quote('It\'s too much of a bother to find another quote.',
                       'Humor',
                       'Alone, at his computer',
                       '2019'));
-console.log(quotes);
 
 // Returns a random quote object
 function getRandomQuote() {
@@ -88,9 +87,7 @@ function printQuote() {
   htmlStr += '</p>';
   
   document.getElementById('quote-box').innerHTML = htmlStr;
-  document.getElementById('loadQuote').style.backgroundColor = getRandomColor;
-  
-  console.log(htmlStr);
+  document.getElementById('loadQuote').style.backgroundColor = getRandomColor();
   return htmlStr;
 }
 
