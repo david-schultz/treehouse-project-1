@@ -87,6 +87,7 @@ function printQuote() {
   htmlStr += '</p>';
   
   document.getElementById('quote-box').innerHTML = htmlStr;
+  document.getElementById('body').style.backgroundColor = getRandomColor();
   document.getElementById('loadQuote').style.backgroundColor = getRandomColor();
   return htmlStr;
 }
