@@ -1,85 +1,82 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+student: David Schultz
 ******************************************/
 
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
-
-/*** 
-Create the array of quote objects and name it `quotes`.
-Add at least five quote objects to the `quotes` array.
-Give each quote object a `quote` and `source` property.
-Add the `citation` property to at least one object in the array.
-Add the `year` property to at least one object in the array.
-Use console.log() to log your array of quotes to the console.
-***/
+// A Quote object contains 5 strings representing a
+// quotation, source, citation, year, and tag.
+//
+// Though citation, year, and tag are optional, in that
+// they may be null, quotation and source must always
+// be defined as strings.
 class Quote {
-  constructor(quotation, source, citation, year) {
+  // Creates a new Quote object consisting of a quotation,
+  // source, tag, citation, and year.
+  constructor(quotation, source, tag, citation, year) {
     this.quotation = quotation;
     this.source = source;
+    this.tag = tag;
     this.citation = citation;
     this.year = year;
   }
+
+  // Creates a new Quote object consisting of a quotation,
+  // source, and tag.
+  constructor(quotation, source, tag) {
+    this.quotation = quotation;
+    this.source = source;
+    this.tag = tag;
+    this.citation = null;
+    this.year = null;
+  }
 }
 
-var quotes = [new Quote('I love you the more in that I believe you had'
-                    + ' liked me for my own sake and for nothing'
-                    + ' else.',
-                    'John Keats',
-                    null,
-                    null),
-          
-          new Quote('The best and most beautiful things in the world'
-                    + ' cannot be seen or even touched - they must be'
-                    + ' felt with the heart.',
-                    'Helen Keller',
-                    null,
-                    null),
-          
-          new Quote('It is during our darkest moments that we must'
-                    + ' focus to see the light.',
-                    'Aristotle',
-                    null,
-                    null),
-          
-          new Quote('Don\'t judge each day by the harvest you reap'
-                    + ' but by the seeds that you plant.',
-                    'Robert Louis Stevenson',
-                    null,
-                    null),
-          
-          new Quote('It\'s too much of a bother to find another'
-                    + ' quote.',
-                    'David Schultz',
-                    'Alone, at his computer',
-                    '2019')];
+var quotes = [];
+quotes.push(new Quote('Tesla blows haha',
+                      'Elon Musk',
+                      'Business',
+                      'Twitter',
+                      '2019'));
 
+quotes.push(new Quote('Today\'s gunna be one of those days huh',
+                      'Brennon Hook',
+                      'Humor',
+                      'Twitter',
+                      '2019'));
 
-/***
-Create the `getRandomQuote` function to:
-- Create a variable to store a random number 
-- Cse the random number to `return` a random quote object from the `quotes` array.
-***/
+quotes.push(new Quote('It is during our darkest moments that we must'
+                      + ' focus to see the light.',
+                      'Aristotle',
+                      'Productivity'));
 
+quotes.push(new Quote('Don\'t judge each day by the harvest you reap'
+                      + ' but by the seeds that you plant.',
+                      'Robert Louis Stevenson',
+                      'Productivity'));
+
+quotes.push(new Quote('It\'s too much of a bother to find another quote.',
+                      'David Schultz',
+                      'Humor',
+                      'Alone, at his computer',
+                      '2019'));
+
+// Returns a random quote object
 function getRandomQuote() {
-  var rand = Math.floor( Math.random() * 5 );
-  return quotes[rand];
+  return quotes[Math.floor( Math.random() * 5 )];
 }
 
-/***
-Create the `printQuote` function to: 
-- Call the `getRandomQuote` function and assign it to a variable.
-- Create a variable for the HTML string and set it equal to an empty string.
-- Use the HTML template in the instructions or the markup in the index.html file, AND 
-  the random quote vairable to build your HTML string.
-- Add the quote and source section to the HTML string.
-- Use an if statement to check for the citation property before adding it to the HTML string.
-- Use an if statement to check for the year property before adding it to the HTML string.
-- Don't forget to close that final `p` tag.
-- Set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
+// Returns a random color
+function getRandomColor() {
+  var colors = ['#e08dac', '#6a7fdb', '#57e2e5', '#45cb85', '#153131'];
+  return colors[Math.floor( Math.random() * 5 )];
+}
 
+// Creates and returns a string  of HTML code representing a random
+// quote object.
+//
+// Changes the 'quote-box' innerHTML to said string.
+// Changes the background to a random color.
 function printQuote() {
   var q = getRandomQuote();
   var htmlStr = '<p class="quote">' + q.quotation + '</p>' +
@@ -90,20 +87,15 @@ function printQuote() {
   if(q.year !== null) {
     htmlStr += '<span class="year">' + q.year + '</span>';
   }
+  if(q.tag !== null) {
+    htmlStr += '<span class="tag">' + q.tag + '</span>';
+  }
   htmlStr += '</p>';
+  
   document.getElementById('quote-box').innerHTML = htmlStr;
+  document.getElementById('loadQuote').style.backgroundColor = getRandomColor;
+  
   return htmlStr;
 }
-console.log(printQuote());
-
-/***
-When the "Show another quote" button is clicked, the event listener 
-below will be triggered, and it will call, or "invoke", the `printQuote` 
-function. So do not make any changes to the line of code below this 
-comment.
-***/
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
