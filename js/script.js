@@ -91,8 +91,10 @@ function printQuote() {
     htmlStr += '<span class="year">' + q.year + '</span>';
   }
   htmlStr += '</p>';
+  document.getElementById('quote-box').innerHTML = htmlStr;
   return htmlStr;
 }
+console.log(printQuote());
 
 /***
 When the "Show another quote" button is clicked, the event listener 
